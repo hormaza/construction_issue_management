@@ -38,7 +38,7 @@ function Navbar() {
         </div>
         <div className="form-body">
          
-          <div class="horizontal-group">
+          <div className="horizontal-group">
           <div className="form-group">
             <label htmlFor="type">Type of issue:</label>
             <div className="select-wrapper">
@@ -74,7 +74,10 @@ function Navbar() {
               >
               </textarea>
           </div>
-          { errors.description && errors.description.type === "maxLength" && <span>Sorry. The maximum length for description should be 100 characters.</span>}
+          <div className="error-box">
+            { errors.description && errors.description.type === "maxLength" && <span className="error">Sorry. The maximum length for description should be 100 characters.</span>}
+            { errors.description && errors.description.type === "required" && <span className="error">Sorry. The description is required.</span>}
+          </div>
         </div>
         <div className="form-footer">
           <input type="submit" />
@@ -132,12 +135,12 @@ const Style = styled.section`
         border: 1px solid #d6d6d6;
         border-radius: 4px;
         background: white;
-        outline: none;
       }
 
       input, select {
         width: 100%;
         height: 34px;
+        outline: none;
       }
 
       .horizontal-group {
@@ -165,6 +168,10 @@ const Style = styled.section`
     .form-footer {
       display: flex;
       justify-content: flex-end;
+      background-color: #eff0f1;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border-top: 1px solid #cccccc;
       input {
         display: inline-block;
         padding: 10px 20px;
@@ -182,8 +189,13 @@ const Style = styled.section`
       }
     }
 
+    .error-box{
+      height: 21px;
+    }
+
     .error{
       border-color: red;
+      color:red;
       &:focus{
         outline-color: red;
       }
