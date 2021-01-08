@@ -24,7 +24,7 @@ function IssueList() {
         <tbody>
           {
             issueSortedList.map(issue => (
-              <tr className={issueHasPassed(issue.dueDate) && 'issuePassed'}
+              <tr className={issueHasPassed(issue.dueDate) ? "issuePassed" : ""}
                 key={issue.uniqueID}>
                 <td>{issue.uniqueID}</td>
                 <td>{issue.creationDate}</td>
