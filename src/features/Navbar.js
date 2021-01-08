@@ -1,5 +1,5 @@
 import React from 'react';
-import autodeskLogo from '../../assets/imgs/autodesk_logo.png';
+import autodeskLogo from '../assets/imgs/autodesk_logo.png';
 
 function Navbar() {
   return (
