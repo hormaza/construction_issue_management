@@ -5,9 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 function IssueList() {
   const issueList = useSelector(state => state.issueList);
   const issueSortedList = issueList.sort(
-    (a, b) => new Date (a.dueDate )- new Date(b.dueDate)
+    (a, b) => new Date(a.dueDate) - new Date(b.dueDate)
   )
-  console.log(issueSortedList)
+
+  const issueHasPassed = (dueDate) => new Date(dueDate) - new Date() < 0;
   return (
     <Styled>
       <table>
@@ -22,7 +23,8 @@ function IssueList() {
         <tbody>
           {
             issueSortedList.map(issue => (
-              <tr key={issue.uniqueID}>
+              <tr className={issueHasPassed(issue.dueDate) && 'issuePassed'}
+                key={issue.uniqueID}>
                 <td>{issue.uniqueID}</td>
                 <td>{issue.dueDate}</td>
                 <td>{issue.type}</td>
@@ -51,7 +53,7 @@ const Styled = styled.section`
     padding: 8px;
   }
 
-  tr:nth-child(even) {
-    background-color: #dddddd;
+  .issuePassed {
+    background: red;
   }
 `
