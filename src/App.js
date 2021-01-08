@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from './features/counter/Navbar'
-import AddIssueForm from './features/counter/AddIssueForm'
-import IssueList from './features/counter/IssueList'
+import Navbar from './features/Navbar'
+import AddIssueForm from './features/AddIssueForm'
+import IssueList from './features/IssueList'
 
 import './App.css';
 
