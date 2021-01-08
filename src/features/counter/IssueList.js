@@ -1,0 +1,54 @@
+import React from 'react';
+import styled from 'styled-components'
+import { useSelector, useDispatch } from 'react-redux';
+
+function IssueList() {
+  const issueList = useSelector(state => state.issueList);
+  console.log(issueList)
+  return (
+    <Styled>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Due Date</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            issueList.map(issue => (
+              <tr key={issue.uniqueID}>
+                <td>{issue.uniqueID}</td>
+                <td>{issue.dueDate}</td>
+                <td>{issue.type}</td>
+                <td>{issue.description}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </Styled>
+  )
+}
+
+export default IssueList;
+
+const Styled = styled.section`
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+`
