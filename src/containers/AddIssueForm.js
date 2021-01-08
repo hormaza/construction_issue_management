@@ -33,35 +33,52 @@ function Navbar() {
   return (
     <Style>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="type">Type:</label>
-        <select id="type" name="type" ref={register}>
-          <option value="quality">Quality</option>
-          <option value="safety">Safety</option>
-          <option value="cost">Cost</option>
-        </select>
-
-        <label htmlFor="description">Due Date:</label>
-        <DatePicker
-          showTimeSelect
-          dateFormat="MMMM d yyyy, h:mm a"
-          selected={dueDate}
-          className='datepicker'
-          onChange={date => setDueDate(date)}
-          ref={register}
-          customInput={<DatePickerInput />}
-        />
-
-        <label htmlFor="description">Description:</label>
-        <textarea
-          type='textarea'
-          name="description"
-          id="description"
-          ref={register({ required: true, maxLength: 100 })}
-        >
-        </textarea>
-        {errors.description && <span>Sorry. The maximum length for description should be 100 characters.</span>}
-
-        <input type="submit" />
+        <div className="form-header">
+          <h2>Submit a new Issue</h2>
+        </div>
+        <div className="form-body">
+         
+          <div class="horizontal-group">
+          <div className="form-group">
+            <label htmlFor="type">Type of issue:</label>
+            <div className="select-wrapper">
+              <select id="type" name="type" ref={register}>
+                <option value="quality">Quality</option>
+                <option value="safety">Safety</option>
+                <option value="cost">Cost</option>
+              </select>
+            </div>
+          </div>
+            <div className="form-group">
+              <label htmlFor="description">Select Due Date:</label>
+              <DatePicker
+                showTimeSelect
+                dateFormat="MMMM d yyyy, h:mm a"
+                selected={dueDate}
+                className='datepicker'
+                onChange={date => setDueDate(date)}
+                ref={register}
+                customInput={<DatePickerInput />}
+              />
+            </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="description">Description:</label>
+              <textarea
+                className={errors.description ? 'error' : ''}
+                type='textarea'
+                name="description"
+                id="description"
+                ref={register({ required: true, maxLength: 100 })}
+                rows="4" cols="50"
+              >
+              </textarea>
+          </div>
+          { errors.description && errors.description.type === "maxLength" && <span>Sorry. The maximum length for description should be 100 characters.</span>}
+        </div>
+        <div className="form-footer">
+          <input type="submit" />
+        </div>
       </form>
     </Style>
   )
@@ -70,15 +87,106 @@ function Navbar() {
 export default Navbar;
 
 const Style = styled.section`
-  background: red;
   display: flex;
-  flex-direction: row;
-  max-width: 1000px;
-  width: 100%;
+  justify-content: center;
 
   form {
+    border-radius: 10px;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     display: flex;
     flex-direction: column;
+    margin: 10px;
 
+    label {
+      color: #666;
+      font-size: 17px;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .form-header {
+      background-color: #eff0f1;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+      h2 {
+        font-size: 30px;
+        text-align: center;
+        color: #666;
+        padding: 20px 0;
+        margin: 0;
+        border-bottom: 1px solid #cccccc;
+      }
+    }
+    
+    .form-body {
+      padding: 0 20px;
+
+      input, select, textarea {
+        font-size: 17px;
+        box-sizing: border-box;
+        padding-left: 10px;
+        padding-right: 10px;
+        color: #333333;
+        text-align: left;
+        border: 1px solid #d6d6d6;
+        border-radius: 4px;
+        background: white;
+        outline: none;
+      }
+
+      input, select {
+        width: 100%;
+        height: 34px;
+      }
+
+      .horizontal-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .form-group {
+          flex-basis: 49%;
+          display: flex;
+          justify-content: space-between
+        }
+      }
+
+      .select-wrapper {
+        width: 100%;
+      }
+
+      .form-group {
+        margin: 10px 0;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: flex-end;
+      input {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 20px;
+        background-color: #1bba93;
+        font-size: 17px;
+        border: none;
+        border-radius: 5px;
+        color: #bcf5e7;
+        cursor: pointer;
+        &:hover {
+          background-color: #169c7b;
+          color: white;
+        }
+      }
+    }
+
+    .error{
+      border-color: red;
+      &:focus{
+        outline-color: red;
+      }
+    }
   }
 `;
