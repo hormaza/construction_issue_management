@@ -23,8 +23,8 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 3px 6px rgba(15,85,170,0.16),
-    0 3px 6px rgba(15,85,170,0.23);
+  box-shadow: 0 10px 8px 0 rgba(0,0,0,0.2);
+  margin-bottom: 20px;
 
   .logo-container {
     padding: 10px;
