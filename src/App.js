@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import Navbar from './features/counter/Navbar'
 import AddIssueForm from './features/counter/AddIssueForm'
-import { Counter } from './features/counter/Counter';
+import IssueList from './features/counter/IssueList'
+
 import './App.css';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Navbar />
       <AddIssueForm />
-      
+      <IssueList />
     </div>
   );
 }

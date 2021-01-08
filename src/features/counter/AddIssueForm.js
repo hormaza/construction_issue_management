@@ -3,11 +3,21 @@ import styled from 'styled-components'
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useSelector, useDispatch } from 'react-redux';
 
 function Navbar() {
   const [dueDate, setDueDate] = useState(new Date());
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = data => console.log(data);
+  const dispatch = useDispatch();
+  const onSubmit = data => {
+    dispatch({
+      type: 'ADDISSUE',
+      payload: {
+        ...data,
+        uniqueID: Date.now() + '_' + Math.floor(Math.random() * 999999)
+      }
+    })
+  }
 
   const DatePickerInput = React.forwardRef(
     (props, ref) => (
@@ -33,6 +43,8 @@ function Navbar() {
 
         <label htmlFor="description">Due Date:</label>
         <DatePicker
+          showTimeSelect
+          dateFormat="MMMM d, yyyy h:mm aa"
           selected={dueDate}
           className='datepicker'
           onChange={date => setDueDate(date)}
