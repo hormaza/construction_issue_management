@@ -1,13 +1,51 @@
 import React from 'react';
 import autodeskLogo from '../assets/imgs/autodesk_logo.png';
+import styled from 'styled-components'
 
 function Navbar() {
   return (
-    <header>
-      <img src={autodeskLogo}></img>
-      <h1>Construction Issues Management</h1>
-    </header>
+    <Header>
+      <div className="logo-container">
+        <img height="40px" src={autodeskLogo}></img>
+      </div>
+      <div className="title">
+        <h1>Construction Issues Management</h1>
+      </div>
+      <div className="author">
+        <h3><a href="mailto:matias.hormaza@globant.com">Matias Hormaza</a></h3>
+      </div>
+    </Header>
   )
 }
+
+const Header = styled.header`
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(15,85,170,0.16),
+    0 3px 6px rgba(15,85,170,0.23);
+
+  .logo-container {
+    padding: 10px;
+  }
+  .title {
+    text-align: center;
+    h1 {
+      margin: 10px 0;
+    }
+  }
+
+  .author {
+    a {
+      color: black;
+      text-decoration: none;
+      padding: 10px;
+      :active {
+        color: #bacfe6;
+      }
+    }
+  }
+`
 
 export default Navbar;
