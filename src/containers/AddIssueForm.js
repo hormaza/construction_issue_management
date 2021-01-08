@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import moment from 'moment';
 
 function Navbar() {
   const [dueDate, setDueDate] = useState(new Date());
@@ -14,10 +15,11 @@ function Navbar() {
       type: 'ADDISSUE',
       payload: {
         ...data,
-        uniqueID: Date.now() + '_' + Math.floor(Math.random() * 999999)
+        uniqueID: Date.now() + '_' + Math.floor(Math.random() * 999999),
+        creationDate: moment(Date.now()).format("MMMM D YYYY, h:mm A")
       }
-    })
-  }
+    });
+  };
 
   const DatePickerInput = React.forwardRef(
     (props, ref) => (
@@ -27,9 +29,6 @@ function Navbar() {
         ref={register}
       />
     ));
-
-  const uniqueID = Date.now() + '_' + Math.floor(Math.random() * 999999)
-  console.log(uniqueID)
 
   return (
     <Style>
@@ -44,7 +43,7 @@ function Navbar() {
         <label htmlFor="description">Due Date:</label>
         <DatePicker
           showTimeSelect
-          dateFormat="MMMM d, yyyy h:mm aa"
+          dateFormat="MMMM d yyyy, h:mm a"
           selected={dueDate}
           className='datepicker'
           onChange={date => setDueDate(date)}
