@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 function IssueList() {
   const issueList = useSelector(state => state.issueList);
-  console.log(issueList)
+  const issueSortedList = issueList.sort(
+    (a, b) => new Date (a.dueDate )- new Date(b.dueDate)
+  )
+  console.log(issueSortedList)
   return (
     <Styled>
       <table>
@@ -18,7 +21,7 @@ function IssueList() {
         </thead>
         <tbody>
           {
-            issueList.map(issue => (
+            issueSortedList.map(issue => (
               <tr key={issue.uniqueID}>
                 <td>{issue.uniqueID}</td>
                 <td>{issue.dueDate}</td>
