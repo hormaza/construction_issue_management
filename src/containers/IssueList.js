@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function IssueList() {
   const issueList = useSelector(state => state.issueList);
@@ -15,6 +15,7 @@ function IssueList() {
         <thead>
           <tr>
             <th>ID</th>
+            <th>Creation Date</th>
             <th>Due Date</th>
             <th>Type</th>
             <th>Description</th>
@@ -26,6 +27,7 @@ function IssueList() {
               <tr className={issueHasPassed(issue.dueDate) && 'issuePassed'}
                 key={issue.uniqueID}>
                 <td>{issue.uniqueID}</td>
+                <td>{issue.creationDate}</td>
                 <td>{issue.dueDate}</td>
                 <td>{issue.type}</td>
                 <td>{issue.description}</td>
