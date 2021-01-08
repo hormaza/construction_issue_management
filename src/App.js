@@ -1,9 +1,8 @@
 import React from 'react';
-import Navbar from './features/Navbar'
-import AddIssueForm from './features/AddIssueForm'
-import IssueList from './features/IssueList'
+import Navbar from './containers/Navbar'
+import AddIssueForm from './containers/AddIssueForm'
+import IssueList from './containers/IssueList'
 
-import './App.css';
 
 function App() {
   return (
