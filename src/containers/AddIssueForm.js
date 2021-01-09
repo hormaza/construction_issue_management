@@ -37,7 +37,6 @@ function Navbar() {
           <h2>Submit a new Issue</h2>
         </div>
         <div className="form-body">
-         
           <div className="horizontal-group">
           <div className="form-group">
             <label htmlFor="type">Type of issue:</label>
@@ -191,6 +190,7 @@ const Style = styled.section`
 
     .error-box{
       height: 21px;
+      margin: 10px 0;
     }
 
     .error{
