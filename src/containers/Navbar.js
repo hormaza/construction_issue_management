@@ -33,6 +33,7 @@ const Header = styled.header`
     text-align: center;
     h1 {
       margin: 10px 0;
+      color: #666;
     }
   }
 
@@ -42,7 +43,7 @@ const Header = styled.header`
       text-decoration: none;
       padding: 10px;
       :active {
-        color: #bacfe6;
+        color: orangered;
       }
     }
   }
