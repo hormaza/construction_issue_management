@@ -27,38 +27,43 @@ function IssueList() {
         <div className="table-header">
           <h2>Issues Table</h2>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Due Date</th>
-              <th>Creation Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              issueSortedList.map(issue => (
-                <tr className={
-                  [
-                    issueHasPassed(issue.dueDate) ? "issuePassed" : "",
-                    issue.starred ? "starred" : ""
-                  ].join(" ")
-                }
-                  key={issue.uniqueID}
-                  onClick={() => starredIssue(issue.uniqueID)}
-                >
-                  <td>{issue.uniqueID}</td>
-                  <td>{issue.description}</td>
-                  <td>{issue.type}</td>
-                  <td>{issue.dueDate}</td>
-                  <td>{issue.creationDate}</td>
+        {
+          !!issueList.length ?
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Description</th>
+                  <th>Type</th>
+                  <th>Due Date</th>
+                  <th>Creation Date</th>
                 </tr>
-              ))
-            }
-          </tbody>
-        </table>
+              </thead>
+
+              <tbody>
+                {
+                  issueSortedList.map(issue => (
+                    <tr className={
+                      [
+                        issueHasPassed(issue.dueDate) ? "issuePassed" : "",
+                        issue.starred ? "starred" : ""
+                      ].join(" ")
+                    }
+                      key={issue.uniqueID}
+                      onClick={() => starredIssue(issue.uniqueID)}
+                    >
+                      <td>{issue.uniqueID}</td>
+                      <td>{issue.description}</td>
+                      <td>{issue.type}</td>
+                      <td>{issue.dueDate}</td>
+                      <td>{issue.creationDate}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table> :
+            <div className="no-issues"><h3>There are no issues to display.</h3></div>
+        }
       </div>
     </Styled>
   )
@@ -115,9 +120,13 @@ const Styled = styled.section`
     text-align: left;
     padding: 8px;
   }
-
+  .no-issues {
+    text-align: center;
+  }
   .issuePassed {
-    color: orangered !important;
+    color: red !important;
+    background: lightsalmon;
+    font-weight: bold;
   }
 
   .starred {
